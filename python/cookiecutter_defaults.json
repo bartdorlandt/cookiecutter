@@ -1,0 +1,10 @@
+{
+  "cookiecutter": {
+    "description": "",
+    "project_name": "Baking Contest",
+    "project_slug": "baking-contest",
+    "project_python_name": "baking_contest",
+    "project_python_base_version": "3.11",
+    "version": "1.0.0"
+  }
+}

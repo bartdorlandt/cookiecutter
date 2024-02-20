@@ -1,0 +1,8 @@
+{
+    "description": "",
+    "project_name": "Cookiecutter Project",
+    "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '-').replace('_', '-') }}",
+    "project_python_name": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
+    "project_python_base_version": "3.11",
+    "version": "1.0.0"
+}

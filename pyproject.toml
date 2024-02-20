@@ -1,0 +1,73 @@
+[tool.poetry]
+name = "cookiecutter main"
+version = "0.0.1"
+description = "Bart Dorlandt cookiecutter templates"
+authors = ["Bart Dorlandt <bart@bamweb.nl>"]
+license = "LICENSE"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+cookiecutter = "*"
+pyyaml = "*"
+jinja2 = "^3.1.3"
+jinja2-time = "^0.2.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "*"
+pytest_cookies = "*"
+invoke = "*"
+yamllint = "*"
+toml = "*"
+ruff = "*"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+extend-exclude = [".git", "__pycache__", "dist", "build", ".venv", "test_*", "noxfile.py"]
+
+[tool.ruff.lint]
+extend-ignore = ["D203", "D213"]
+extend-select = [
+    # pycodestyle Google style
+    "D", 
+    # pycodestyle errors and warnings
+    "E", "W",
+    # mccabe
+    "C90",
+    # Pyflakes
+    "F",
+    # pyupgrade
+    "UP",
+    # pylint
+    "PL",
+    # flake8-bugbear
+    "B",
+    # flake8-simplify
+    "SIM",
+    # isort
+    "I",
+    # flake8-bandit
+    "S",
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+[tool.mypy]
+python_version = "3.11"
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = [
+    "ignore:The _yaml extension module is now located at yaml._yaml:DeprecationWarning",
+]
+# addopts = "--cov=. --cov-report=xml --cov-report=term --junitxml=pytest_report.xml"

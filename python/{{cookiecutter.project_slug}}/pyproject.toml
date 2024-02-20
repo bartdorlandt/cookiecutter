@@ -1,0 +1,78 @@
+[tool.poetry]
+name = "{{ cookiecutter.project_slug }}"
+version = "{{ cookiecutter.version }}"
+description = "{{ cookiecutter.description }}"
+authors = ["Bart Dorlandt <bart@bamweb.nl>"]
+
+[tool.poetry.dependencies]
+python = "^{{cookiecutter.project_python_base_version}}"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "*"
+nox = "*"
+ruff = "*"
+mypy = "*"
+pytest-cov = "*"
+invoke = "*"
+toml = "*"
+nox-poetry = "*"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 120
+indent-width = 4
+
+[tool.ruff.lint]
+extend-ignore = ["D203", "D213"]
+extend-select = [
+    # pycodestyle Google style
+    "D", 
+    # pycodestyle errors and warnings
+    "E", "W",
+    # mccabe
+    "C90",
+    # Pyflakes
+    "F",
+    # pyupgrade
+    "UP",
+    # pylint
+    "PL",
+    # flake8-bugbear
+    "B",
+    # flake8-simplify
+    "SIM",
+    # isort
+    "I",
+    # flake8-bandit
+    "S",
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = [
+    # at least this three should be fine in tests:
+    "S101", # asserts allowed in tests...
+    "ARG", # Unused function args -> fixtures nevertheless are functionally relevant...
+    "FBT", # Don't care about booleans as positional arguments in tests, e.g. via @pytest.mark.parametrize()
+]
+
+[tool.mypy]
+python_version = "{{ cookiecutter.project_python_base_version }}"
+exclude = ['noxfile.py']
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = 'tests.*'
+disallow_untyped_defs = false
