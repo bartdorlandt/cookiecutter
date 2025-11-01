@@ -14,7 +14,7 @@ jobs:
     outputs:
       session: {% raw %}${{ steps.set-matrix.outputs.session }}{% endraw %}
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - uses: wntrblm/nox@main
     - run: pip install nox-poetry
     - id: set-matrix
@@ -30,7 +30,7 @@ jobs:
       matrix:
         session: {% raw %}${{ fromJson(needs.generate-jobs.outputs.session) }}{% endraw %}
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - uses: wntrblm/nox@main
     - run: pip install nox-poetry poetry
     - run: nox -s "{% raw %}${{ matrix.session }}{% endraw %}"
